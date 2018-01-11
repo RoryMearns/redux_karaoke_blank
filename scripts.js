@@ -17,7 +17,17 @@ console.log(initialState);
 
 // REDUCER WILL GO HERE
 
+const reducer = (state = initialState, action) => {
+  return state;
+}
+
 // JEST TESTS + SETUP WILL GO HERE
+
+const { expect } = window;
+
+expect(
+  reducer(initialState, { type: null })
+).toEqual(initialState);
 
 // REDUX STORE
 
