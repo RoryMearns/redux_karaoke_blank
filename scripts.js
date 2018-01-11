@@ -15,6 +15,16 @@ const initialState = {
 
 console.log(initialState);
 
+// REDUCER WILL GO HERE
+
+// JEST TESTS + SETUP WILL GO HERE
+
+// REDUX STORE
+
+const { createStore } = Redux;
+const store = createStore(reducer);
+console.log(store.getState());
+
 // CLICK LISTENER 
 
 const userClick = () => {
