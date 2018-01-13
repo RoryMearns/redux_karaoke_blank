@@ -15,10 +15,23 @@ const initialState = {
 
 console.log(initialState);
 
-// REDUCER WILL GO HERE
+// REDUX REDUCER
 
 const reducer = (state = initialState, action) => {
-  return state;
+  let newState;
+  switch (action.type) {
+    case 'NEXT_LYRIC':
+      let newPosition = state.arrayPosition + 1;
+      newState = {
+        chorusString: state.chorusString,
+        chorusArray: state.chorusArray,
+        arrayPosition: newPosition,
+        currentPhrase: state.chorusArray[newPosition]
+      }
+      return newState;
+    default:
+      return state;
+  }
 }
 
 // JEST TESTS + SETUP WILL GO HERE
@@ -29,11 +42,30 @@ expect(
   reducer(initialState, { type: null })
 ).toEqual(initialState);
 
+expect(
+  reducer(initialState, { type: 'NEXT_LYRIC' })
+).toEqual({
+  chorusString: chorusString,
+  chorusArray: chorusArray,
+  arrayPosition: 1,
+  currentPhrase: chorusArray[1]
+});
+
 // REDUX STORE
 
 const { createStore } = Redux;
 const store = createStore(reducer);
 console.log(store.getState());
+
+// RENDERING STATE IN DOM
+
+const render = () => {
+  document.getElementById('words').innerHTML = store.getState().currentPhrase;
+}
+
+window.onload = function() {
+  render();
+}
 
 // CLICK LISTENER 
 
