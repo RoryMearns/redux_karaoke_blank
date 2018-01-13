@@ -71,4 +71,6 @@ window.onload = function() {
 
 const userClick = () => {
   console.log('click');
+  store.dispatch({ type: 'NEXT_LYRIC' });
+  console.log(store.getState());
 }
